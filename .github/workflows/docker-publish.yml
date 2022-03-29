@@ -24,11 +24,18 @@ jobs:
           start: '1'
           end: '4'
         
-      - name: Checkout branch
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         if: steps.tag-name.outputs.result == '2.2'
         with: 
           ref: '2.2'
+      
+      - name: Get branch names2
+        id: branch-name-2
+        uses: tj-actions/branch-names@v5.2
+
+      - name: Current branch name
+        run: |
+          echo "${{ steps.branch-name-2.outputs.current_branch }}"
 
         # Outputs: "v0.0.1" OR "0.0.1"
       # - name: Use Node.js ${{ matrix.node-version }}
