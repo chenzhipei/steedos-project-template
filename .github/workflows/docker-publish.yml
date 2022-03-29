@@ -1,7 +1,7 @@
 name: Docker publish to docker.io and ecr
 
 on:
-  push:
+  release:
     tags:
      - 'v**'
 jobs:
