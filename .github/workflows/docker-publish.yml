@@ -56,16 +56,22 @@ jobs:
             {{major}}
             {{major}}.{{minor}}
       
-      - uses: web3j/slice-action@v1.3
-        id: docker-tags
+      # - uses: web3j/slice-action@v1.3
+      #   id: docker-tags
+      #   with:
+      #     value: ${{steps.docker_meta.outputs.tags}}
+      #     start: '-39'
+      #     end: '0'
+      - uses: mad9000/actions-find-and-replace-string@2
+        id: tags_result
         with:
-          value: ${{steps.docker_meta.outputs.tags}}
-          start: '-39'
-          end: '0'
-
+          source: ${{ steps.docker_meta.outputs.tags }} # this translates to ref/heads/main on the main branch, but can be any arbitrary string 
+          find: 'steedos/steedos-project:latest'        # we want to remove ref/heads/ from source 
+          replace: ''
+      
       - name: echo tags
         run: |
-          echo "${{steps.docker-tags.outputs.result}}"
+          echo "${{steps.tags_result.outputs.value}}"
 
       # - name: Build & Push
       #   uses: docker/build-push-action@v2
