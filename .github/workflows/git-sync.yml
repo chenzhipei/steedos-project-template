@@ -8,14 +8,14 @@ jobs:
       - name: git-sync-branch
         uses: wei/git-sync@v3
         with:
-          source_repo: ${{SOURCE_REPO}}
+          source_repo: ${{secrets.SOURCE_REPO}}
           source_branch: "refs/remotes/source/*"
-          destination_repo: ${{DESTINATION_REPO}}
+          destination_repo: ${{secrets.DESTINATION_REPO}}
           destination_branch: "refs/heads/*"
       - name: git-sync-tag
         uses: wei/git-sync@v3
         with:
-          source_repo: ${{SOURCE_REPO}}
+          source_repo: ${{secrets.SOURCE_REPO}}
           source_branch: "refs/tags/*"
-          destination_repo: ${{DESTINATION_REPO}}
+          destination_repo: ${{secrets.DESTINATION_REPO}}
           destination_branch: "refs/tags/*"
