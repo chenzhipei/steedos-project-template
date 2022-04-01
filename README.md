@@ -98,4 +98,4 @@ STEEDOS_CLOUD_API_KEY=#会自动填充为初始界面中输入的环境变量值
 - **steedos-config.yml**：华炎魔方配置文件，详情请参考文档 [环境变量、系统参数配置向导](https://www.steedos.cn/docs/deploy/steedos-config)。
 
 - **package.json**：华炎魔方项目是一个标准的NPM项目，该文件用于配置项目依赖的 npm 包。
-如果需要升级魔方平台内核版本，也是修改此文件，详情请参考文档 [升级已有老版本项目](https://www.steedos.cn/docs/deploy/upgrade)。
+如果需要升级魔方平台内核版本，也是修改此文件，详情请参考文档 [升级已有老版本项目](https://www.steedos.cn/docs/deploy/upgrade)
