@@ -58,9 +58,7 @@ jobs:
       
       - name: echo tags
         run: |
-          array = ( "${steps.docker_meta.outputs.tags/'steedos/steedos-project-template:latest'}" )
-          echo "${{ array }}"
-        # if: steps.tag-name.outputs.result == '2.1'
+          echo "${{ steps.docker_meta.outputs.tags[0] }}"
 
       # - name: Build & Push
       #   uses: docker/build-push-action@v2
