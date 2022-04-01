@@ -10,7 +10,7 @@ jobs:
         with:
           source_repo: "https://${{secrets.USERNAME_GITHUB}}:${{secrets.ACCESS_TOKEN_GITHUB}}@github.com/chenzhipei/steedos-project-template.git"
           source_branch: "refs/remotes/source/*"
-          destination_repo: "https://${{secrets.USERNAME_GITLAB}}:${{secrets.PASSWORD_GITLAB}}@gitlab.steedos.cn/chenzhipei/steedos-project-template.git"
+          destination_repo: "https://gitlab.steedos.cn/chenzhipei/steedos-project-template.git"
           destination_branch: "refs/heads/*"
           # ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} # optional
           # source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
