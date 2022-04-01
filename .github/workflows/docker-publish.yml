@@ -66,7 +66,7 @@ jobs:
         id: tags_result
         with:
           source: ${{ steps.docker_meta.outputs.tags }} # this translates to ref/heads/main on the main branch, but can be any arbitrary string 
-          find: 'steedos/steedos-project:latest'        # we want to remove ref/heads/ from source 
+          find: 'steedos/steedos-project-template:latest'        # we want to remove ref/heads/ from source 
           replace: ''
       
       - name: echo tags
