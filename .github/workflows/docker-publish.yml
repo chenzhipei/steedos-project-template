@@ -60,14 +60,12 @@ jobs:
         id: docker-tags
         with:
           value: ${{steps.docker_meta.outputs.tags}}
-          start: '-1'
-          end: '-39'
+          start: '0'
+          end: '39'
 
       - name: echo tags
-        env:
-          tags: ${{steps.docker-tags.outputs.result}}
         run: |
-          echo $tags
+          echo "${{steps.docker-tags.outputs.result}}"
 
       # - name: Build & Push
       #   uses: docker/build-push-action@v2
