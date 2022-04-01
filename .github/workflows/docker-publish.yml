@@ -57,28 +57,34 @@ jobs:
             {{major}}.{{minor}}
       
       - name: Delete the latest tag 
-        if: steps.tag-name.outputs.result != '2.1'
         uses: mad9000/actions-find-and-replace-string@2
         id: tags_result
         with:
           source: ${{ steps.docker_meta.outputs.tags }} # this translates to ref/heads/main on the main branch, but can be any arbitrary string 
           find: 'steedos/steedos-project-template:latest'        # we want to remove ref/heads/ from source 
           replace: ''
-      
-      - name: echo tags
-        run: |
-          echo "${{steps.tags_result.outputs.value}}"
 
-      # - name: Build & Push
-      #   uses: docker/build-push-action@v2
-      #   if: steps.tag-name.outputs.result == '2.1'
-      #   with:
-      #     context: .
-      #     file: ./Dockerfile
-      #     platforms: linux/amd64
-      #     push: ${{ github.event_name != 'pull_request' }}
-      #     tags: ${{ steps.docker_meta.outputs.tags }}
-      #     labels: ${{ steps.docker_meta.outputs.labels }}
+      - name: Build & Push 2.1
+        uses: docker/build-push-action@v2
+        if: steps.tag-name.outputs.result == '2.1'
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
+      
+      - name: Build & Push other
+        uses: docker/build-push-action@v2
+        if: steps.tag-name.outputs.result != '2.1'
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.tags_result.outputs.value }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
       # - name: Configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v1
       #   with:
