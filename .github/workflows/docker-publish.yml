@@ -60,7 +60,7 @@ jobs:
         env:
           tags: ${{steps.docker_meta.outputs.tags}}
         run: |
-          echo "${{tags[0]}}"
+          echo $tags
 
       # - name: Build & Push
       #   uses: docker/build-push-action@v2
