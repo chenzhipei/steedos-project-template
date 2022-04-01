@@ -56,9 +56,16 @@ jobs:
             {{major}}
             {{major}}.{{minor}}
       
+      - uses: web3j/slice-action@v1.3
+        id: docker-tags
+        with:
+          value: ${{steps.docker_meta.outputs.tags}}
+          start: '-1'
+          end: '-39'
+
       - name: echo tags
         env:
-          tags: ${{steps.docker_meta.outputs.tags}}
+          tags: ${{steps.docker-tags.outputs.result}}
         run: |
           echo $tags
 
